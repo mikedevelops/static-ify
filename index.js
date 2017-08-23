@@ -2,8 +2,8 @@ const winston = require('winston');
 const path = require('path');
 const StaticifyFactory = require('./lib/Factories/StaticifyFactory');
 const ResourceManagerFactory = require('./lib/Factories/ResourceManagerFactory');
+const ErrorServiceFactory = require('./lib/Factories/ErrorServiceFactory');
 
-const tmp = path.join(__dirname, 'tmp', 'bundle');
 const library = {
     'favicons': {
         resources: [],
@@ -35,11 +35,15 @@ const library = {
     }
 };
 
-const resourceManager = ResourceManagerFactory(library);
+const errorService = ErrorServiceFactory();
+const resourceManager = ResourceManagerFactory(library, errorService);
+const tmp = path.join(__dirname, 'tmp', 'test');
+
 const staticify = StaticifyFactory({
     output: tmp,
-    request: 'http://localhost:8765'
-}, resourceManager);
+    request: 'http://localhost:8765',
+    target: 'http://mike.com',
+}, resourceManager, errorService);
 
 global.logger = winston;
 global.logger.level = 'debug';
