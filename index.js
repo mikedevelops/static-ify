@@ -46,6 +46,6 @@ const staticify = StaticifyFactory({
 }, resourceManager, errorService);
 
 global.logger = winston;
-global.logger.level = 'debug';
+global.logger.level = 'verbose';
 
 staticify.start();
