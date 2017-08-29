@@ -48,4 +48,6 @@ const staticify = StaticifyFactory({
 global.logger = winston;
 global.logger.level = 'verbose';
 
-staticify.start();
+(async function () {
+    await staticify.start();
+})();
