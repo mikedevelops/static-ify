@@ -2,13 +2,10 @@ html {
     font-family: monospace;
 }
 
-img {
+div, img {
     display: block;
-}
-
-div {
     height: 100px;
-    width: 100px;
+    width: 150px;
 }
 
 #css-background-image {

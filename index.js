@@ -46,8 +46,12 @@ const staticify = StaticifyFactory({
 }, resourceManager, errorService);
 
 global.logger = winston;
-global.logger.level = 'verbose';
+global.logger.level = 'info';
 
 (async function () {
     await staticify.start();
+
+    global.logger.log('info', `Got ${resourceManager.getSuccessfulResources().length} resources successfully`)
+    global.logger.log('info', `Failed to get ${resourceManager.getFailedResources().length} resources`)
+    global.logger.log('info', `Logged ${errorService.getErrors().length} errors`)
 })();
