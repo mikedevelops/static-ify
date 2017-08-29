@@ -14,51 +14,92 @@
 
     <hr>
     <pre>Image tag | relative URL | single quotes</pre>
-    <img src='images/dog-image-relative-single.jpg'/>
-    <pre class="tag"></pre>
+    <img
+        id="dog-image-relative-single"
+        src='images/dog-image-relative-single.jpg'
+        data-original='images/dog-image-relative-single.jpg'
+    />
+    <pre data-for="dog-image-relative-single" class="tag"></pre>
 
     <hr>
     <pre>Image tag | relative URL | double quotes</pre>
-    <img src="images/dog-image-relative-double.jpg"/>
-    <pre class="tag"></pre>
+    <img
+        id="dog-image-relative-double"
+        src="images/dog-image-relative-double.jpg"
+        data-original="images/dog-image-relative-double.jpg"
+    />
+    <pre data-for="dog-image-relative-double" class="tag"></pre>
 
     <hr>
     <pre>Image tag | root relative URL | single quotes</pre>
-    <img src='/images/dog-image-root-relative-single.jpg'/>
-    <pre class="tag"></pre>
+    <img
+        id="dog-image-root-relative-single"
+        src='/images/dog-image-root-relative-single.jpg'
+        data-original='/images/dog-image-root-relative-single.jpg'
+    />
+    <pre data-for="dog-image-root-relative-single" class="tag"></pre>
 
     <hr>
     <pre>Image tag | root relative URL | double quotes</pre>
-    <img src="/images/dog-image-root-relative-double.jpg"/>
-    <pre class="tag"></pre>
+    <img
+        id="dog-image-root-relative-double"
+        src="/images/dog-image-root-relative-double.jpg"
+        data-original="/images/dog-image-root-relative-double.jpg"
+    />
+    <pre data-for="dog-image-root-relative-double" class="tag"></pre>
 
     <hr>
     <pre>Image tag | protocol relative URL | single quotes</pre>
-    <img src='//localhost:8765/images/dog-image-protocol-relative-single.jpg'/>
-    <pre class="tag"></pre>
+    <img
+        id="dog-image-protocol-relative-single"
+        src='//localhost:8765/images/dog-image-protocol-relative-single.jpg'
+        data-original='//localhost:8765/images/dog-image-protocol-relative-single.jpg'
+    />
+    <pre data-for="dog-image-protocol-relative-single" class="tag"></pre>
 
     <hr>
     <pre>Image tag | protocol relative URL | double quotes</pre>
-    <img src='//localhost:8765/images/dog-image-protocol-relative-double.jpg'/>
-    <pre class="tag"></pre>
+    <img
+        id="dog-image-protocol-relative-double"
+        src='//localhost:8765/images/dog-image-protocol-relative-double.jpg'
+        data-original='//localhost:8765/images/dog-image-protocol-relative-double.jpg'
+    />
+    <pre data-for="dog-image-protocol-relative-double" class="tag"></pre>
 
     <hr>
     <pre>Image tag | absolute URL | single quotes</pre>
-    <img src='http://localhost:8765/images/dog-image-absolute-single.jpg'/>
-    <pre class="tag"></pre>
+    <img
+        id="dog-image-absolute-single"
+        src='http://localhost:8765/images/dog-image-absolute-single.jpg'
+        data-original='http://localhost:8765/images/dog-image-absolute-single.jpg'
+    />
+    <pre data-for="dog-image-absolute-single" class="tag"></pre>
 
     <hr>
     <pre>Image tag | absolute URL | double quotes</pre>
-    <img src='http://localhost:8765/images/dog-image-absolute-double.jpg'/>
-    <pre class="tag"></pre>
+    <img
+        id="dog-image-absolute-double"
+        src='http://localhost:8765/images/dog-image-absolute-double.jpg'
+        data-original='http://localhost:8765/images/dog-image-absolute-double.jpg'
+    />
+    <pre data-for="dog-image-absolute-double" class="tag"></pre>
 
     <script>
         var tags = [].slice.call(document.querySelectorAll('.tag'));
 
         tags.forEach(function (tag) {
             var area = document.createElement('textarea');
+            var img = document.getElementById(tag.getAttribute('data-for'));
 
-            area.textContent = tag.previousElementSibling.outerHTML;
+            img.addEventListener('error', function () {
+                tag.style.backgroundColor = 'red';
+            });
+
+            img.addEventListener('load', function () {
+                tag.style.backgroundColor = 'green';
+            });
+
+            area.textContent = img.getAttribute('data-original');
             tag.innerHTML = area.innerHTML;
             tag.style = 'background-color: black; padding: 4px; color: white; display: inline-block;';
         });
