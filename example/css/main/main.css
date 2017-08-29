@@ -1,0 +1,16 @@
+html {
+    font-family: monospace;
+}
+
+img {
+    display: block;
+}
+
+div {
+    height: 100px;
+    width: 100px;
+}
+
+#css-background-image {
+    background-image: url('../../images/dog.jpg');
+}

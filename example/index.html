@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Example</title>
+
+    <link href="css/main/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1>Example</h1>
+
+    <hr>
+    <pre>Image tag | relative URL | double quotes</pre>
+    <img src="images/dog.jpg"/>
+    <pre class="tag"></pre>
+
+    <hr>
+    <pre>Image tag | relative URL | single quotes</pre>
+    <img src='images/dog.jpg'/>
+    <pre class="tag"></pre>
+
+    <hr>
+    <pre>CSS background image | relative URL | inline | single quotes</pre>
+    <div id="inline-css-background-image-relative-single" style="background-image: url('images/dog.jpg')"></div>
+    <pre class="tag"></pre>
+
+    <hr>
+    <pre>CSS background image | relative URL | inline | double quotes</pre>
+    <div id="inline-css-background-image-relative-double" style='background-image: url("images/dog.jpg")'></div>
+    <pre class="tag"></pre>
+
+    <hr>
+    <pre>CSS background image | relative URL | inline | no quotes</pre>
+    <div id="inline-css-background-image-relative-none" style='background-image: url(images/dog.jpg)'></div>
+    <pre class="tag"></pre>
+
+    <hr>
+    <pre>CSS (file) background image - relative URL</pre>
+    <div id="css-background-image"></div>
+    <pre class="tag"></pre>
+
+    <script>
+        var tags = [].slice.call(document.querySelectorAll('.tag'));
+
+        tags.forEach(function (tag) {
+            var area = document.createElement('textarea');
+
+            area.textContent = tag.previousElementSibling.outerHTML;
+            tag.innerHTML = area.innerHTML;
+            tag.style = 'background-color: black; padding: 4px; color: white; display: inline-block;';
+        });
+    </script>
+</body>
+</html>
