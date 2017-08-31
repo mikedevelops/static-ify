@@ -85,23 +85,27 @@
     <pre data-for="dog-image-absolute-double" class="tag"></pre>
 
     <script>
-        var tags = [].slice.call(document.querySelectorAll('.tag'));
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('ready!')
 
-        tags.forEach(function (tag) {
-            var area = document.createElement('textarea');
-            var img = document.getElementById(tag.getAttribute('data-for'));
+            var tags = [].slice.call(document.querySelectorAll('.tag'));
 
-            img.addEventListener('error', function () {
-                tag.style.backgroundColor = 'red';
+            tags.forEach(function (tag) {
+                var area = document.createElement('textarea');
+                var img = document.getElementById(tag.getAttribute('data-for'));
+
+                img.addEventListener('error', function () {
+                    tag.style.backgroundColor = 'red';
+                });
+
+                img.addEventListener('load', function () {
+                    tag.style.backgroundColor = 'green';
+                });
+
+                area.textContent = img.getAttribute('data-original');
+                tag.innerHTML = area.innerHTML;
+                tag.style = 'background-color: black; padding: 4px; color: white; display: inline-block;';
             });
-
-            img.addEventListener('load', function () {
-                tag.style.backgroundColor = 'green';
-            });
-
-            area.textContent = img.getAttribute('data-original');
-            tag.innerHTML = area.innerHTML;
-            tag.style = 'background-color: black; padding: 4px; color: white; display: inline-block;';
         });
     </script>
 </body>
