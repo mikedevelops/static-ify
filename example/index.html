@@ -12,6 +12,68 @@
 <body>
     <h1>Example</h1>
 
+    <!--
+        LINKS
+    -->
+
+    <hr>
+    <pre>Link | relative URL | single quotes</pre>
+    <a
+            id="link-relative-single"
+            href='about'
+            data-original='about'
+    >Link</a>
+    <pre data-for="link-relative-single" class="tag"></pre>
+
+    <hr>
+    <pre>Link | relative URL | double quotes</pre>
+    <a
+            id="link-relative-double"
+            href="about"
+            data-original='about'
+    >Link</a>
+    <pre data-for="link-relative-double" class="tag"></pre>
+
+    <hr>
+    <pre>Link | root relative URL | single quotes</pre>
+    <a
+            id="link-root-relative-single"
+            href='/about'
+            data-original='/about'
+    >Link</a>
+    <pre data-for="link-root-relative-single" class="tag"></pre>
+
+    <hr>
+    <pre>Link | root relative URL | double quotes</pre>
+    <a
+            id="link-root-relative-double"
+            href="/about"
+            data-original='/about'
+    >Link</a>
+    <pre data-for="link-root-relative-double" class="tag"></pre>
+
+    <hr>
+    <pre>Link | protocol relative URL | single quotes</pre>
+    <a
+            id="link-protocol-relative-single"
+            href='//google.com'
+            data-original='//google.com'
+    >Link</a>
+    <pre data-for="link-protocol-relative-single" class="tag"></pre>
+
+    <hr>
+    <pre>Link | protocol relative URL | double quotes</pre>
+    <a
+            id="link-protocol-relative-double"
+            href="//google.com"
+            data-original='//google.com'
+    >Link</a>
+    <pre data-for="link-protocol-relative-double" class="tag"></pre>
+
+    <!--
+        IMAGES
+    -->
+
     <hr>
     <pre>Image tag | relative URL | single quotes</pre>
     <img
@@ -92,19 +154,23 @@
 
             tags.forEach(function (tag) {
                 var area = document.createElement('textarea');
-                var img = document.getElementById(tag.getAttribute('data-for'));
+                var node = document.getElementById(tag.getAttribute('data-for'));
 
-                img.addEventListener('error', function () {
+                node.addEventListener('error', function () {
                     tag.style.backgroundColor = 'red';
                 });
 
-                img.addEventListener('load', function () {
+                node.addEventListener('load', function () {
                     tag.style.backgroundColor = 'green';
                 });
 
-                area.textContent = img.getAttribute('data-original');
+                area.textContent = node.getAttribute('data-original');
                 tag.innerHTML = area.innerHTML;
                 tag.style = 'background-color: black; padding: 4px; color: white; display: inline-block;';
+
+                if (node.tagName === 'A') {
+                    node.innerHTML = node.getAttribute('href');
+                }
             });
         });
     </script>

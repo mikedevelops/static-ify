@@ -2,6 +2,10 @@ html {
     font-family: monospace;
 }
 
+a {
+    display: block;
+}
+
 div, img {
     display: block;
     height: 100px;
