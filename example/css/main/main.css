@@ -6,12 +6,17 @@ a {
     display: block;
 }
 
-img {
+img, .background {
+    background-size: cover;
     display: inline-block;
     height: 100px;
     width: 150px;
 }
 
-#css-background-image {
-    background-image: url('../../images/dog.jpg');
+.background {
+    background-color: red;
+}
+
+#css-background-relative-jpg {
+    background-image: url('../images/jpg-css-background-relative.jpg');
 }
