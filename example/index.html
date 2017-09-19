@@ -17,134 +17,99 @@
     -->
 
     <hr>
-    <pre>Link | relative URL | single quotes</pre>
+    <pre>Link | relative URL</pre>
     <a
-            id="link-relative-single"
-            href='about'
-            data-original='about'
-    >Link</a>
-    <pre data-for="link-relative-single" class="tag"></pre>
-
-    <hr>
-    <pre>Link | relative URL | double quotes</pre>
-    <a
-            id="link-relative-double"
+            id="link-relative"
             href="about"
-            data-original='about'
+            data-original="about"
     >Link</a>
-    <pre data-for="link-relative-double" class="tag"></pre>
+    <pre data-for="link-relative" class="tag"></pre>
 
     <hr>
-    <pre>Link | root relative URL | single quotes</pre>
+    <pre>Link | root relative URL</pre>
     <a
-            id="link-root-relative-single"
-            href='/about'
-            data-original='/about'
-    >Link</a>
-    <pre data-for="link-root-relative-single" class="tag"></pre>
-
-    <hr>
-    <pre>Link | root relative URL | double quotes</pre>
-    <a
-            id="link-root-relative-double"
+            id="link-root-relative"
             href="/about"
-            data-original='/about'
+            data-original="/about"
     >Link</a>
-    <pre data-for="link-root-relative-double" class="tag"></pre>
+    <pre data-for="link-root-relative" class="tag"></pre>
 
     <hr>
-    <pre>Link | protocol relative URL | single quotes</pre>
+    <pre>Link | protocol relative URL</pre>
     <a
-            id="link-protocol-relative-single"
-            href='//google.com'
-            data-original='//google.com'
-    >Link</a>
-    <pre data-for="link-protocol-relative-single" class="tag"></pre>
-
-    <hr>
-    <pre>Link | protocol relative URL | double quotes</pre>
-    <a
-            id="link-protocol-relative-double"
+            id="link-protocol-relative"
             href="//google.com"
             data-original='//google.com'
     >Link</a>
-    <pre data-for="link-protocol-relative-double" class="tag"></pre>
+    <pre data-for="link-protocol-relative" class="tag"></pre>
 
     <!--
-        IMAGES
+        IMAGES (JPG)
     -->
 
     <hr>
-    <pre>Image tag | relative URL | single quotes</pre>
+    <pre>Image tag | relative URL</pre>
     <img
-        id="dog-image-relative-single"
-        src='images/dog-image-relative-single.jpg'
-        data-original='images/dog-image-relative-single.jpg'
+        id="jpg-image-relative"
+        src='images/jpg-image-relative.jpg'
+        data-original='images/jpg-image-relative.jpg'
     />
-    <pre data-for="dog-image-relative-single" class="tag"></pre>
+    <img
+        id="png-image-relative"
+        src='images/png-image-relative.png'
+        data-original='images/png-image-relative.png'
+    />
+    <br>
+    <pre data-for="jpg-image-relative" class="tag"></pre>
+    <pre data-for="png-image-relative" class="tag"></pre>
 
     <hr>
-    <pre>Image tag | relative URL | double quotes</pre>
+    <pre>Image tag | root relative URL</pre>
     <img
-        id="dog-image-relative-double"
-        src="images/dog-image-relative-double.jpg"
-        data-original="images/dog-image-relative-double.jpg"
+        id="jpg-image-root-relative"
+        src='/images/jpg-image-root-relative.jpg'
+        data-original='/images/jpg-image-root-relative.jpg'
     />
-    <pre data-for="dog-image-relative-double" class="tag"></pre>
+    <img
+        id="png-image-root-relative"
+        src='/images/png-image-root-relative.png'
+        data-original='/images/png-image-root-relative.png'
+    />
+    <br>
+    <pre data-for="jpg-image-root-relative" class="tag"></pre>
+    <pre data-for="png-image-root-relative" class="tag"></pre>
 
     <hr>
-    <pre>Image tag | root relative URL | single quotes</pre>
+    <pre>Image tag | protocol relative URL</pre>
     <img
-        id="dog-image-root-relative-single"
-        src='/images/dog-image-root-relative-single.jpg'
-        data-original='/images/dog-image-root-relative-single.jpg'
+        id="jpg-image-protocol-relative"
+        src='//localhost:8765/images/jpg-image-protocol-relative.jpg'
+        data-original='//localhost:8765/images/jpg-image-protocol-relative.jpg'
     />
-    <pre data-for="dog-image-root-relative-single" class="tag"></pre>
+    <img
+        id="png-image-protocol-relative"
+        src='//localhost:8765/images/png-image-protocol-relative.png'
+        data-original='//localhost:8765/images/png-image-protocol-relative.png'
+    />
+    <br>
+    <pre data-for="jpg-image-protocol-relative" class="tag"></pre>
+    <pre data-for="png-image-protocol-relative" class="tag"></pre>
 
     <hr>
-    <pre>Image tag | root relative URL | double quotes</pre>
+    <pre>Image tag | absolute URL</pre>
     <img
-        id="dog-image-root-relative-double"
-        src="/images/dog-image-root-relative-double.jpg"
-        data-original="/images/dog-image-root-relative-double.jpg"
+        id="jpg-image-absolute"
+        src='http://localhost:8765/images/jpg-image-absolute.jpg'
+        data-original='http://localhost:8765/images/jpg-image-absolute.jpg'
     />
-    <pre data-for="dog-image-root-relative-double" class="tag"></pre>
-
-    <hr>
-    <pre>Image tag | protocol relative URL | single quotes</pre>
     <img
-        id="dog-image-protocol-relative-single"
-        src='//localhost:8765/images/dog-image-protocol-relative-single.jpg'
-        data-original='//localhost:8765/images/dog-image-protocol-relative-single.jpg'
+        id="png-image-absolute"
+        src='http://localhost:8765/images/png-image-absolute.png'
+        data-original='http://localhost:8765/images/png-image-absolute.png'
     />
-    <pre data-for="dog-image-protocol-relative-single" class="tag"></pre>
-
-    <hr>
-    <pre>Image tag | protocol relative URL | double quotes</pre>
-    <img
-        id="dog-image-protocol-relative-double"
-        src='//localhost:8765/images/dog-image-protocol-relative-double.jpg'
-        data-original='//localhost:8765/images/dog-image-protocol-relative-double.jpg'
-    />
-    <pre data-for="dog-image-protocol-relative-double" class="tag"></pre>
-
-    <hr>
-    <pre>Image tag | absolute URL | single quotes</pre>
-    <img
-        id="dog-image-absolute-single"
-        src='http://localhost:8765/images/dog-image-absolute-single.jpg'
-        data-original='http://localhost:8765/images/dog-image-absolute-single.jpg'
-    />
-    <pre data-for="dog-image-absolute-single" class="tag"></pre>
-
-    <hr>
-    <pre>Image tag | absolute URL | double quotes</pre>
-    <img
-        id="dog-image-absolute-double"
-        src='http://localhost:8765/images/dog-image-absolute-double.jpg'
-        data-original='http://localhost:8765/images/dog-image-absolute-double.jpg'
-    />
-    <pre data-for="dog-image-absolute-double" class="tag"></pre>
+    <br>
+    <pre data-for="jpg-image-absolute" class="tag"></pre>
+    <pre data-for="png-image-absolute" class="tag"></pre>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

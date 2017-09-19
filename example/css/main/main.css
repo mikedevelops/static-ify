@@ -6,8 +6,8 @@ a {
     display: block;
 }
 
-div, img {
-    display: block;
+img {
+    display: inline-block;
     height: 100px;
     width: 150px;
 }
