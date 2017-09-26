@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for Managers/ResourceManager.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">Managers</a> ResourceManager.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.55% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/44</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.65% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/43</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const fs = require('fs');
+&nbsp;
+class ResourceManager {
+    /**
+     * ResourceManager
+     * @param {string} outputDir
+     * @param {Object} library
+     * @param {FileService} fileService
+     * @param {RequestService} requestService
+     * @param {ErrorService} errorService
+     */
+<span class="fstat-no" title="function not covered" >    co</span>nstructor (
+        outputDir,
+        library,
+        fileService,
+        requestService,
+        errorService
+    ) {
+<span class="cstat-no" title="statement not covered" >        this.outputDir = outputDir;</span>
+<span class="cstat-no" title="statement not covered" >        this.library = library;</span>
+<span class="cstat-no" title="statement not covered" >        this.fileService = fileService;</span>
+<span class="cstat-no" title="statement not covered" >        this.requestService = requestService;</span>
+<span class="cstat-no" title="statement not covered" >        this.errorService = errorService;</span>
+<span class="cstat-no" title="statement not covered" >        this.html = null;</span>
+<span class="cstat-no" title="statement not covered" >        this.replaced = [];</span>
+<span class="cstat-no" title="statement not covered" >        this.ignored = [];</span>
+    }
+&nbsp;
+    /**
+     * Get library
+     * @returns {Object}
+     */
+<span class="fstat-no" title="function not covered" >    ge</span>tLibrary () {
+<span class="cstat-no" title="statement not covered" >        return this.library;</span>
+    }
+&nbsp;
+    /**
+     * Check if type exists in library
+     * @param {string} type
+     * @returns {boolean}
+     */
+<span class="fstat-no" title="function not covered" >    ty</span>peExists (type) {
+<span class="cstat-no" title="statement not covered" >        return !!this.library[type];</span>
+    }
+&nbsp;
+    /**
+     * Get successful resources
+     * @returns {array}
+     */
+<span class="fstat-no" title="function not covered" >    ge</span>tSuccessfulResources () {
+<span class="cstat-no" title="statement not covered" >        return Object.keys(this.library).reduce(<span class="fstat-no" title="function not covered" >(r</span>esources, type) =&gt; {</span>
+            const successful = <span class="cstat-no" title="statement not covered" >this.library[type].resources.filter(<span class="fstat-no" title="function not covered" >re</span>source =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                return resource.getSuccess()</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return resources.concat(successful);</span>
+        }, []);
+    }
+&nbsp;
+    /**
+     * Get unsuccessful resources
+     * @returns {array}
+     */
+<span class="fstat-no" title="function not covered" >    ge</span>tFailedResources () {
+<span class="cstat-no" title="statement not covered" >        return Object.keys(this.library).reduce(<span class="fstat-no" title="function not covered" >(r</span>esources, type) =&gt; {</span>
+            const failed = <span class="cstat-no" title="statement not covered" >this.library[type].resources.filter(<span class="fstat-no" title="function not covered" >re</span>source =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                return !resource.getSuccess()</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return resources.concat(failed);</span>
+        }, []);
+    }
+&nbsp;
+    /**
+     * Get replaced resources
+     * @returns {Array}
+     */
+<span class="fstat-no" title="function not covered" >    ge</span>tReplaced () {
+<span class="cstat-no" title="statement not covered" >        return this.replaced;</span>
+    }
+&nbsp;
+    /**
+     * Get resource types
+     * @returns {Array}
+     */
+<span class="fstat-no" title="function not covered" >    ge</span>tResourceTypes () {
+<span class="cstat-no" title="statement not covered" >        return Object.keys(this.library);</span>
+    }
+&nbsp;
+    /**
+     * Add resource to manager
+     * @param {string} type
+     * @param {Resource} resource
+     * @returns {Resource}
+     */
+<span class="fstat-no" title="function not covered" >    ad</span>dResource (type, resource) {
+<span class="cstat-no" title="statement not covered" >        if (type !== null) {</span>
+<span class="cstat-no" title="statement not covered" >            this.library[type].resources.push(resource);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            this.replaced.push(resource);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return resource;</span>
+    }
+&nbsp;
+    /**
+     * Add HTML to manager
+     * @param {string} html
+     */
+<span class="fstat-no" title="function not covered" >    ad</span>dHtml (html) {
+<span class="cstat-no" title="statement not covered" >        this.html = html;</span>
+    }
+&nbsp;
+    /**
+     * Save resources
+     */
+<span class="fstat-no" title="function not covered" >    as</span>ync save (output) {
+        // build up resource promises here so we can async all the things
+        const resourcePromises = <span class="cstat-no" title="statement not covered" >[</span>
+            this.fileService.saveFile(output, 'index.html', this.html)
+        ];
+&nbsp;
+        // for each resource within each type
+<span class="cstat-no" title="statement not covered" >        for (let type in this.library) {</span>
+<span class="cstat-no" title="statement not covered" >            for (let resource of this.library[type].resources) {</span>
+                // attempt to request and save asset
+<span class="cstat-no" title="statement not covered" >                if (resource.getDownload()) {</span>
+<span class="cstat-no" title="statement not covered" >                    try {</span>
+                        const resourceRequest = <span class="cstat-no" title="statement not covered" >await this.requestService.get(resource.getResourceRequestUrl(), true);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        resourcePromises.push(this.fileService.saveFile(</span>
+                            this.outputDir.join(output, type),
+                            resource.getFilename(),
+                            resourceRequest
+                        ));
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        resource.setSuccess(true);</span>
+                    } catch (error) {
+<span class="cstat-no" title="statement not covered" >                        this.errorService.throwError({</span>
+                            msg: `[ResourceManager] Error retrieving "${resource.getResourceRequestUrl()}" | ${error}`
+                        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        resource.setSuccess(false);</span>
+                    }
+                }
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        await Promise.all(resourcePromises);</span>
+    }
+&nbsp;
+    /**
+     * Log ignored resources
+     * @param {string} resourceString
+     */
+<span class="fstat-no" title="function not covered" >    ig</span>nore (resourceString) {
+<span class="cstat-no" title="statement not covered" >        this.ignored.push(resourceString);</span>
+    }
+&nbsp;
+    /**
+     * Get ignored
+     * @returns {Array}
+     */
+<span class="fstat-no" title="function not covered" >    ge</span>tIgnored () {
+<span class="cstat-no" title="statement not covered" >        return this.ignored;</span>
+    }
+&nbsp;
+    /**
+     * Log resource type information
+     */
+<span class="fstat-no" title="function not covered" >    in</span>fo () {
+<span class="cstat-no" title="statement not covered" >        Object.keys(this.library).forEach(<span class="fstat-no" title="function not covered" >ty</span>pe =&gt; {</span>
+            const resources = <span class="cstat-no" title="statement not covered" >this.library[type].resources.filter(<span class="fstat-no" title="function not covered" >re</span>source =&gt; <span class="cstat-no" title="statement not covered" >resource.local)</span>;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            global.logger.log('info', `[ResourceManager] Parsed ${resources.length} "${type}" local resources`);</span>
+        });
+    }
+}
+&nbsp;
+module.exports = ResourceManager;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Sep 19 2017 13:41:14 GMT+0100 (BST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

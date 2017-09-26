@@ -11,11 +11,13 @@ const library = {
     },
     'css': {
         resources: [],
-        extensions: ['css']
+        extensions: ['css'],
+        nested: true
     },
     'javascript': {
         resources: [],
-        extensions: ['js']
+        extensions: ['js'],
+        nested: true
     },
     'images': {
         resources: [],

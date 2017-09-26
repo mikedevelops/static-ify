@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start:example": "node example/example-server.js"
+    "start:example": "node example/example-server.js",
+    "test": "jest --watch --coverage",
+    "jest": "jest"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +16,7 @@
     "eslint": "^4.4.1",
     "eslint-plugin-react": "^7.1.0",
     "jest": "^20.0.4",
+    "jest-cli": "^21.1.0",
     "nodemon": "^1.11.0"
   },
   "dependencies": {

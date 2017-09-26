@@ -1,22 +1,33 @@
-require('jest');
-
-const ResourceManager = require('../../lib/Managers/ResourceManager');
-
-jest.mock('../../lib/Resources/Resource');
-
+const { createStubInstance } = require('../../lib/Utils/TestUtils');
+const ResourceManagerFactory = require('../../lib/Managers/ResourceManager');
 const Resource = require('../../lib/Resources/Resource');
+const FileService = require('../../lib/Services/FileService');
+const RequestService = require('../../lib/Services/RequestService');
+const ErrorService = require('../../lib/Services/ErrorService');
 
 describe('ResourceManager', () => {
-    let service;
+    let resourceManager;
     let resource;
     let library;
+    let outputDir;
+    let fileService;
+    let requestService;
+    let errorService;
 
     beforeEach(() => {
+        outputDir = '/path/to/output';
+        fileService = createStubInstance(FileService, jest.fn());
+        requestService = createStubInstance(RequestService, jest.fn());
+        errorService = createStubInstance()
         library = {
-            'foo': { resources: [], extensions: ['bar'] }
+            'foo': { resources: [], extensions: ['bar'] },
+            'bar': { resources: [], extensions: ['js'], nested: true }
         };
-        resource = new Resource('cache', 'extract');
-        service = new ResourceManager(library);
+        resourceManager = new ResourceManager(
+            outputDir,
+            library,
+            // @todo - carry on with this
+        );
     });
 
     describe('getLibrary()', () => {
