@@ -122,6 +122,8 @@ module.exports = class Staticify {
                 length: 0
             }
         };
+
+        this.currentAsset = null;
     }
 
     /**
@@ -201,10 +203,10 @@ module.exports = class Staticify {
             // error
             .catch(err => {
                 console.log(err);
-                console.log(`could not get a response from ${this.options.requestUri}`);
-                this.socket.emit('status', `could not get a response from ${this.options.requestUri}`);
+                console.log(`Error getting resource: ${this.options.requestUri}`);
+                this.socket.emit('status', `could not get a response from ${this.currentAsset}`);
                 this.socket.emit('status code', 400);
-                this.eventEmitter.emit('html:error', this.options.requestUri);
+                this.eventEmitter.emit('html:error', err.message);
             });
         });
     }
@@ -314,6 +316,8 @@ module.exports = class Staticify {
         uri.extractedPath = this.prependProtocol(this.extractPath(uri.cache));
 
         uri.localAsset = this.isLocalAsset(uri.extractedPath);
+
+        this.currentAsset = uri.resourceSource;
 
         // if URI is not considered a local asset, return cache as we do not need to deal with it
         if (!uri.localAsset) {
@@ -450,7 +454,7 @@ module.exports = class Staticify {
         if (resourceExtensionLength > 1) {
             // check path against each resource in list
             this.resourceTypes.map(resource => {
-                if (extension.toLowerCase().indexOf(`${resource}`) !== -1) {
+                if (extension === resource) {
                     resourceType = resource;
                 }
             });
@@ -774,9 +778,9 @@ module.exports = class Staticify {
     /**
      * Handle Html error
      */
-    handleHtmlError (target) {
+    handleHtmlError (msg) {
         if (this.options.verbose) {
-            console.log(`✘ error getting response from: ${target}`);
+            console.log(`✘ error getting resources: ${msg}`);
         }
     }
 
