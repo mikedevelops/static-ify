@@ -2,7 +2,7 @@
   "name": "static-ify-server",
   "version": "0.0.1",
   "scripts": {
-    "start": "cd site && npm install && npm run prod && cd ../ && pm2-runtime start server.js --env production",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "test": "mocha --compilers js:babel-core/register -w",
     "dev": "nodemon server.js --ignore site"
   },
