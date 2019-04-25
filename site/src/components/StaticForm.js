@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import io from 'socket.io-client';
 import StaticInput from './StaticInput';
 import Button from './Button';
 
@@ -7,7 +6,7 @@ export default class StaticForm extends Component {
     constructor (props) {
         super(props);
 
-        this.socket = io();
+        this.socket = props.socket;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             isValid: 0
@@ -26,7 +25,7 @@ export default class StaticForm extends Component {
             removeMainContent: formData.get('removeMainContent')
         };
 
-        this.socket.emit('request bundle', postData);
+        this.socket.emit('request:start', postData);
     }
 
     handleValidation (data) {

@@ -27,6 +27,7 @@ const requestOptions = {
 // 2. allow multiple request URIs
 
 const defaults = {
+    rootOutputDir: '../site/public/output',
     outputDir: '../site/public/output',
     outputFile: 'output',
     hasGrunticon: true,
@@ -51,17 +52,13 @@ const defaults = {
 };
 
 module.exports = class Staticify {
-    constructor (options, eventEmitter = null, socket = null) {
-        this.options = _defaults(options, defaults);
+    constructor (options, eventEmitter, socket) {
+        this.options = Object.assign({}, defaults, options, {
+            outputDir: defaults.outputDir + '/' + socket.id + '/site'
+        });
 
-        if (eventEmitter) {
-            this.eventEmitter = eventEmitter;
-            this.registerEvents();
-        }
-
-        if (socket) {
-            this.socket = socket;
-        }
+        this.eventEmitter = eventEmitter;
+        this.socket = socket;
 
         this.regex = {
             href: /href=(?:"|')(.*?)(?:"|')/g,
@@ -85,7 +82,7 @@ module.exports = class Staticify {
             scriptContent: /<script>([\S\s]*)<\/script>/g
         };
 
-        this.zipBundleName = 'output_bundle.zip';
+        this.zipBundleName = `${this.socket.id}.zip`;
 
         // Let's get out of here if we don't have a requestUri or a targetUri
         // there's a good chance this will be taken care of on the front end
@@ -106,9 +103,6 @@ module.exports = class Staticify {
         // assets
         this.assets = [];
         this.css = [];
-
-        // create output dir structure
-        this.createDirs();
 
         this.assetCount = {
             css: {
@@ -159,21 +153,12 @@ module.exports = class Staticify {
     /**
      * Clean output directory structure
      */
-     cleanOutput (callback = null) {
-        const outputLocation = `${__dirname}/${this.options.outputDir}`;
-        const outputZip = `${__dirname}/../site/public/${this.zipBundleName}`;
+     cleanOutput () {
+        const outputLocation = `${__dirname}/${this.options.rootOutputDir}/${this.socket.id}`;
 
-        rimraf(outputLocation, {}, () => {
-            this.socket.emit('status', 'removed output directory');
+        rimraf.sync(outputLocation);
 
-            rimraf(outputZip, {}, () => {
-                this.socket.emit('status', 'removed output zip');
-
-                if (callback) {
-                    callback();
-                }
-            });
-        });
+        this.socket.emit('status', 'removed output directory');
     }
 
     /**
@@ -184,30 +169,25 @@ module.exports = class Staticify {
 
         this.socket.emit('status', 'Static-ify initiated');
 
-        this.cleanOutput(() => {
-            // create output dir structure
-            this.createDirs();
+        this.resourceSource = this.getResourceSource(this.requestUri);
 
-            this.resourceSource = this.getResourceSource(this.requestUri);
+        rp(this.options.requestUri, requestOptions)
+        // success
+        .then(body => {
+            console.log('\n=====================');
+            console.log(`✔ ${this.options.requestUri}`);
+            console.log('=====================');
 
-            rp(this.options.requestUri, requestOptions)
-            // success
-            .then(body => {
-                console.log('\n=====================');
-                console.log(`✔ ${this.options.requestUri}`);
-                console.log('=====================');
-
-                body = this.parseHtml(body);
-                this.saveFile(body, destination);
-            })
-            // error
-            .catch(err => {
-                console.log(err);
-                console.log(`Error getting resource: ${this.options.requestUri}`);
-                this.socket.emit('status', `could not get a response from ${this.currentAsset}`);
-                this.socket.emit('status code', 400);
-                this.eventEmitter.emit('html:error', err.message);
-            });
+            body = this.parseHtml(body);
+            this.saveFile(body, destination);
+        })
+        // error
+        .catch(err => {
+            console.log(err);
+            console.log(`Error getting resource: ${this.options.requestUri}`);
+            this.socket.emit('status', `could not get a response from ${this.currentAsset}`);
+            this.socket.emit('status code', 400);
+            this.eventEmitter.emit('html:error', err.message);
         });
     }
 
@@ -895,7 +875,7 @@ module.exports = class Staticify {
     zipOutput () {
         const { outputDir, outputFile } = this.options;
         const source = `${__dirname}/${outputDir}`;
-        const destination = `${__dirname}/../site/public/${this.zipBundleName}`;
+        const destination = `${__dirname}/${outputDir}/../${this.zipBundleName}`;
 
         zipFolder(source, destination, (err) => {
             if (err) {
@@ -903,8 +883,8 @@ module.exports = class Staticify {
             }
             else {
                 let data = {
-                    zip: this.zipBundleName,
-                    dir: `${outputFile}.html`,
+                    zip: `output/${this.socket.id}/${this.zipBundleName}`,
+                    dir: `${this.socket.id}/site/${outputFile}.html`,
                     size: this.getFileSize(destination)
                 };
 

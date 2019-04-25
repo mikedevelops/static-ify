@@ -14,8 +14,6 @@ const path = require('path');
 const PORT = process.env.PORT || 8080;
 const PUBLIC = path.resolve(__dirname + '/site/public');
 
-let isInitiated = false;
-
 // middleware
 app.use(bodyParser.json());
 app.use(cors());
@@ -46,40 +44,44 @@ app.get('/cli/test', (req, res) => {
 
 io.on('connection', socket => {
     const eventEmitter = new events.EventEmitter();
-    const cleanOutputOnLoad = new Staticify({}, null, io);
 
-    cleanOutputOnLoad.cleanOutput(() => {
-        cleanOutputOnLoad.socket.emit('status', 'ready for request');
-    });
+    socket.emit('status', socket.id + ' Connected');
 
-    socket.emit('status', 'connected to server');
+    socket.on('request:start', (data) => {
+        const { requestUri, fileName, redirectUri, assetPath } = data;
 
-    socket.on('disconnect', socket => {
-        console.log('\n=====================');
-        console.log(`RESET`);
-        console.log('=====================\n');
+        socket.emit('status', 'Setting up Staticify');
 
-        cleanOutputOnLoad.cleanOutput();
-    });
+        const staticify = new Staticify({
+            requestUri: requestUri,
+            assetPath: assetPath,
+            outputFile: fileName,
+            targetUri: redirectUri,
+            verbose: false
+        }, eventEmitter, socket);
 
-    socket.on('request bundle', (data) => {
-        if (!isInitiated) {
-            isInitiated = true;
-            io.emit('status', 'Server received request');
-            io.emit('status code', 200);
+        socket.on('disconnect', () => {
+            staticify.cleanOutput();
 
-            const { requestUri, fileName, redirectUri, assetPath } = data;
-            const bundle = new Staticify({
-                requestUri: requestUri,
-                assetPath: assetPath,
-                outputFile: fileName,
-                targetUri: redirectUri,
-                verbose: true
-            }, eventEmitter, io).initiate();
+            socket.emit('status', 'Housekeeping');
+        });
 
-            eventEmitter.on('app:complete', () => {
-                isInitiated = false;
-            });
-        }
+        socket.emit('status', 'Housekeeping');
+
+        staticify.createDirs();
+
+        socket.emit('status', 'Creating output directory');
+
+        staticify.createDirs();
+
+        socket.emit('status', 'Created output directory');
+
+        staticify.registerEvents();
+
+        socket.emit('status', 'Registered events');
+
+        staticify.initiate();
+
+        socket.emit('status', 'Building...');
     });
 });

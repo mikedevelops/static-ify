@@ -32,6 +32,8 @@ export default class App extends Component {
         // TODO thin about refactoring this interface for handling socket emissions
 
         this.socket.on('status', (status) => {
+            console.log('status: ', status);
+
             this.setState({
                 status: status
             });
@@ -110,7 +112,7 @@ export default class App extends Component {
         return (
             <div className="app">
                 <div className="sidebar">
-                    <StaticForm statusCode={ statusCode } bundle={ bundle }  />
+                    <StaticForm socket={this.socket} statusCode={ statusCode } bundle={ bundle }  />
                     <p className="identity">Static-ify 2016 | <a className="identity__link" href="http://twitter.com/mikedevelops">MikeDevelops</a></p>
                 </div>
                 <div className="content">
