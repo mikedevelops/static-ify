@@ -62,7 +62,7 @@ module.exports = class Staticify {
 
         this.regex = {
             href: /href=(?:"|')(.*?)(?:"|')/g,
-            src: /src=(?:"|')(.*?)(?:"|')/g,
+            src: /(?:src|srcset)=(?:"|')(.*?)(?:"|')/g,
             url: /url\((.*?)\)/g,
             action: /action=(?:"|')(.*?)(?:"|')/g,
             script: /([\w-]*\.)(?:html|php)/g,
